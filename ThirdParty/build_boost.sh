@@ -3,7 +3,7 @@
 get_python3_version()
 {
    pythonPath=`which python3`
-   if [ $pythonPath == "" ];then
+   if [ "x"$pythonPath == "x" ];then
       echo "python3 not found. Please install python3"
       exit
    else
@@ -22,7 +22,7 @@ check_python3_headers()
       fi
    done
    #pythonHeadersPath=`ls /usr/include/ | grep python3`
-   if [ $pythonHeadersPath == "" ];then
+   if [ "x"$pythonHeadersPath == "x" ];then
       echo "python3 headers not found. Please install python3-dev"
       exit
    else
@@ -40,7 +40,13 @@ extract_and_build_boost()
          rm -rf $boost_folder
       fi
    done
-   boost_tar_name=`ls boost*.tar.bz2`
+   boost_tar_name=`ls boost*.tar.bz2 2>/dev/null`
+   if [ "x"$boost_tar_name == "x" ];then
+      echo "boost package not found"
+      exit
+   else
+      echo "The package is $boost_tar_name"
+   fi
    echo "Extracting  $boost_tar_name"
    tar -xvf $boost_tar_name
    for boost_folder in `ls -d boost*`

@@ -1,0 +1,7 @@
+ThirdParty/*.txt
+ThirdParty/*tar.bz2
+ThirdParty/boost*
+lib/*.so*
+test/*.so*
+bin/*
+Makefile
