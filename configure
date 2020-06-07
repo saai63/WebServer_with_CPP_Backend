@@ -1,0 +1,50 @@
+#!/bin/bash
+echo "Configuring Web server with C++ Backend"
+
+echo "Building and configuring boost"
+cd ThirdParty
+BUILD_BOOST="no"
+if [ -f boost_include.txt ]; then
+   BOOST_INC=`cat boost_include.txt`
+   if [ ! -d $BOOST_INC ]; then
+      BUILD_BOOST="yes"
+   fi
+fi
+if [ -f boost_libraries.txt ]; then
+   BOOST_LIB=`cat boost_libraries.txt`
+   if [ ! -d $BOOST_LIB ]; then
+      BUILD_BOOST="yes"
+   fi
+else
+   BUILD_BOOST="yes"
+fi
+if [ -f python_include.txt ]; then
+   PYTHON_INC=`cat python_include.txt`
+   if [ ! -d $PYTHON_INC ]; then
+      PYTHON_INC="yes"
+   fi
+else
+   BUILD_BOOST="yes"
+fi
+
+if [ $BUILD_BOOST == "yes" ]; then
+   echo "Boost needs to be built now"
+   . build_boost.sh
+else
+   echo "Boost is already built"
+fi
+
+BOOST_INC=`cat boost_include.txt`
+BOOST_LIB=`cat boost_libraries.txt`
+PYTHON_INC=`cat python_include.txt`
+cd $BOOST_LIB
+BOOST_PYTHON_LIB=`ls *.so.* | cut -d'.' -f1 | cut -c4-`
+cd -
+cd ..
+
+echo "Creating Makefile"
+echo "MY_BOOST_INC=$BOOST_INC" > Makefile
+echo "MY_BOOST_LIBS=$BOOST_LIB" >> Makefile
+echo "MY_PYTHON_INC=$PYTHON_INC" >> Makefile
+echo "BOOST_PYTHON_LIB_NAME=$BOOST_PYTHON_LIB" >> Makefile
+cat Makefile.template >> Makefile
