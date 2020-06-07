@@ -9,6 +9,7 @@ else
    BOOST_STAGE_PATH=`cat ThirdParty/boost_libraries.txt`
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib/:$BOOST_STAGE_PATH
 fi
+rm -rf libpath.txt
 echo "Running CPP test"
 ./bin/testLibcpp
 
