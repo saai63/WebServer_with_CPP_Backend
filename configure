@@ -38,7 +38,7 @@ BOOST_INC=`cat boost_include.txt`
 BOOST_LIB=`cat boost_libraries.txt`
 PYTHON_INC=`cat python_include.txt`
 cd $BOOST_LIB
-BOOST_PYTHON_LIB=`ls *.so.* | cut -d'.' -f1 | cut -c4-`
+BOOST_PYTHON_LIB=`ls *python*.so.* | cut -d'.' -f1 | cut -c4-`
 cd -
 cd ..
 echo "Configuring boost is done"

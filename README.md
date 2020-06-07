@@ -24,6 +24,11 @@ To demonstrate the use of C++ as a web backend, we will use an extremely simple 
 * Run '. run_tests.sh' to run the test cases. This calls the library from C++ and also python
 
 # Running the flask based web server
-* Run '. run_webser.sh'
+* Run '. run_webserver.sh'
 * This will start a flask based web server at http://127.0.0.1:5000
 * Navigate to http://127.0.0.1:5000/flask_server to see the web server with C++ backend in action :)
+
+# Running the boost::beast web server
+* Run '. run_beast_server.sh'
+* This will start a boost::beast based web server at http://127.0.0.1:5050
+* Navigate to http://127.0.0.1:5050/beast to see the web server with C++ backend in action :)

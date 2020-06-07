@@ -55,8 +55,8 @@ extract_and_build_boost()
          cd $boost_folder
       fi
    done
-   ./bootstrap.sh --with-python=$pythonPath --with-libraries=python
-   ./b2 --with-python 2>&1 | tee build_boost.txt
+   ./bootstrap.sh --with-python=$pythonPath --with-libraries=python,system
+   ./b2 --with-python --with-system 2>&1 | tee build_boost.txt
    BOOST_INC_PATH=`tail build_boost.txt | grep -A2 "The following directory should be added to compiler include paths" | tail -1`
    BOOST_INC_PATH=`echo $BOOST_INC_PATH | sed 's/ *$//g'`
    BOOST_LIB_PATH=`tail build_boost.txt | grep -A2 "The following directory should be added to linker library paths" | tail -1`
