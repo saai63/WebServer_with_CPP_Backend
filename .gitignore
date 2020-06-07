@@ -5,3 +5,7 @@ lib/*.so*
 test/*.so*
 bin/*
 Makefile
+flask/*.so
+flask/venv/
+flask/__pycache__/
+flask/__pycache__/*

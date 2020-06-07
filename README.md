@@ -15,3 +15,15 @@ There are two really good approaches to tackle this,
 To demonstrate the use of C++ as a web backend, we will use an extremely simple example.
 * A library that reads the current system and returns the same is written in C++
 * This service needs to be accessed by users over a web interface
+
+# Build instructions
+* Copy boost package of your choice (>=1.68.0) to the ThirdParty folder
+* Make sure you have python3 and python3 includes
+* Run './configure'
+* Run 'make clean all' to compile
+* Run '. run_tests.sh' to run the test cases. This calls the library from C++ and also python
+
+# Running the flask based web server
+* Run '. run_webser.sh'
+* This will start a flask based web server at http://127.0.0.1:5000
+* Navigate to http://127.0.0.1:5000/flask_server to the server with C++ backend in action

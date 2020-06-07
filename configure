@@ -41,6 +41,7 @@ cd $BOOST_LIB
 BOOST_PYTHON_LIB=`ls *.so.* | cut -d'.' -f1 | cut -c4-`
 cd -
 cd ..
+echo "Configuring boost is done"
 
 mkdir bin/ lib/
 
@@ -50,3 +51,24 @@ echo "MY_BOOST_LIBS=$BOOST_LIB" >> Makefile
 echo "MY_PYTHON_INC=$PYTHON_INC" >> Makefile
 echo "BOOST_PYTHON_LIB_NAME=$BOOST_PYTHON_LIB" >> Makefile
 cat Makefile.template >> Makefile
+echo "Creating Makefile is done"
+
+echo "Configuring flask web server"
+cd flask
+VIRT_ENV=`which virtualenv`
+if [ "x"$VIRT_ENV == "x" ];then
+   echo "virtualenv is not available."
+   echo "Install virtualenv using the below command"
+   echo "sudo pip install virtualenv"
+   exit
+fi
+if [ ! -d venv ]; then
+   echo "Creating virtualenv"
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install flask
+   deactivate
+fi
+
+echo "Configuring flask web server is done"
+cd ..
