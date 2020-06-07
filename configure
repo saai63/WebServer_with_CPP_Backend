@@ -42,6 +42,8 @@ BOOST_PYTHON_LIB=`ls *.so.* | cut -d'.' -f1 | cut -c4-`
 cd -
 cd ..
 
+mkdir bin/ lib/
+
 echo "Creating Makefile"
 echo "MY_BOOST_INC=$BOOST_INC" > Makefile
 echo "MY_BOOST_LIBS=$BOOST_LIB" >> Makefile
