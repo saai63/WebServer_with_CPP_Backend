@@ -26,4 +26,4 @@ To demonstrate the use of C++ as a web backend, we will use an extremely simple 
 # Running the flask based web server
 * Run '. run_webser.sh'
 * This will start a flask based web server at http://127.0.0.1:5000
-* Navigate to http://127.0.0.1:5000/flask_server to the server with C++ backend in action
+* Navigate to http://127.0.0.1:5000/flask_server to see the web server with C++ backend in action :)
