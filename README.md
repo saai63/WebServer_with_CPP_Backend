@@ -17,7 +17,7 @@ To demonstrate the use of C++ as a web backend, we will use an extremely simple 
 * This service needs to be accessed by users over a web interface
 
 # Build instructions
-* Copy boost package of your choice (>=1.68.0) to the ThirdParty folder
+* Refer to the README in ThirdParty folder and copy the required dependencies.
 * Make sure you have python3 and python3 includes
 * Run './configure'
 * Run 'make clean all' to compile
