@@ -7,7 +7,7 @@ if [ $? == 0 ]; then
 else
    echo "Adjusting LD_LIBRARY_PATH"
    BOOST_STAGE_PATH=`cat ThirdParty/boost_libraries.txt`
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib/:$BOOST_STAGE_PATH
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib/:$BOOST_STAGE_PATH:$PWD/ThirdParty/CxxUrl/
 fi
 rm -rf libpath.txt
 echo "Running Beast server"

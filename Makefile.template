@@ -3,6 +3,8 @@ MY_SRC_PATH=src
 MY_LIB_PATH=lib
 MY_BIN_PATH=bin
 MY_TESTS_PATH=test
+MY_CXX_URL_INC_PATH=ThirdParty/CxxUrl/
+MY_CXX_URL_LIB_PATH=ThirdParty/CxxUrl/
 
 all : getSystemTime cppTest beast_webserver
 
@@ -11,6 +13,6 @@ getSystemTime:
 cppTest:
 	g++ -I $(MY_INCLUDE_PATH) $(MY_TESTS_PATH)/testLib.cpp -o $(MY_BIN_PATH)/testLibcpp -L $(MY_LIB_PATH) -lSystemInfo -lpython3.5m -L$(MY_BOOST_LIBS) -l$(BOOST_PYTHON_LIB_NAME)
 beast_webserver:
-	g++ -std=c++11 -I $(MY_INCLUDE_PATH) -I $(MY_BOOST_INC) $(MY_SRC_PATH)/http_server_async.cpp -o $(MY_BIN_PATH)/boost_webserver -lpthread -L$(MY_BOOST_LIBS) -lboost_system -L$(MY_LIB_PATH) -lSystemInfo -l$(BOOST_PYTHON_LIB_NAME)
+	g++ -std=c++11 -I $(MY_INCLUDE_PATH) -I $(MY_BOOST_INC) -I $(MY_CXX_URL_INC_PATH) $(MY_SRC_PATH)/http_server_async.cpp -o $(MY_BIN_PATH)/boost_webserver -lpthread -L$(MY_BOOST_LIBS) -lboost_system -L$(MY_LIB_PATH) -lSystemInfo -L$(MY_CXX_URL_LIB_PATH) -lCxxUrl -l$(BOOST_PYTHON_LIB_NAME)
 clean:
 	rm -rf lib/* bin/*

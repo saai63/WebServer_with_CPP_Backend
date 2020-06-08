@@ -29,6 +29,7 @@
 #include <thread>
 #include <vector>
 #include <getSystemTime.h>
+#include <url.hpp>
 
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
@@ -150,7 +151,8 @@ handle_request(
 
     // Make sure we can handle the method
     if( req.method() != http::verb::get &&
-        req.method() != http::verb::head)
+        req.method() != http::verb::head &&
+        req.method() != http::verb::post)
         return send(bad_request("Unknown HTTP-method"));
 
     // Request path must be absolute and not contain "..".
@@ -165,8 +167,24 @@ handle_request(
         path.append("index.html");
 
     // Call the library
-    if(req.target() == "/beast")
+    if(req.target().find("/beast") != boost::beast::string_view::npos)
     {
+        //std::cout << "I am here" << std::endl;
+        //std::cout << "Target : " << boost::beast::string_view(req.target()) << std::endl;
+        //std::cout << "Body : " << boost::beast::string_view(req.body()) << std::endl;
+        std::string dummy_url = "http://www.example.com";
+        if(req.method() == http::verb::get)
+        {
+            dummy_url = dummy_url + std::string(req.target());
+        }
+        if(req.method() == http::verb::post)
+        {
+            dummy_url = dummy_url + std::string(req.target()) + "?" + std::string(req.body());
+        }
+        Url u1(dummy_url.c_str());
+        std::string data_sent = u1.query(0).val();
+        std::cout << "The data is " << data_sent.c_str() << std::endl;
+
         http::response<http::string_body> res{http::status::ok, req.version()};
         res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
         res.set(http::field::content_type, "text/html");

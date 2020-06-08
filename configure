@@ -40,10 +40,11 @@ PYTHON_INC=`cat python_include.txt`
 cd $BOOST_LIB
 BOOST_PYTHON_LIB=`ls *python*.so.* | cut -d'.' -f1 | cut -c4-`
 cd -
-cd ..
 echo "Configuring boost is done"
+. build_CxxUrl.sh
+cd ..
 
-mkdir bin/ lib/
+mkdir bin/ lib/ 2>/dev/null
 
 echo "Creating Makefile"
 echo "MY_BOOST_INC=$BOOST_INC" > Makefile

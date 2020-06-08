@@ -9,3 +9,4 @@ flask/*.so
 flask/venv/
 flask/__pycache__/
 flask/__pycache__/*
+ThirdParty/CxxUrl/
